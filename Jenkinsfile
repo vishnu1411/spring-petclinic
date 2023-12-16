@@ -1,5 +1,6 @@
 pipeline {
     agent any
+
     stages {
         stage ('SourceCode') {
             steps {
@@ -11,6 +12,7 @@ pipeline {
         stage ('Build and install') {
             steps {
                 //clean and build using maven
+                //this has to work
                 sh 'mvn clean install'
             }
 
@@ -23,5 +25,6 @@ pipeline {
             }
 
         }
+
     }
 }
