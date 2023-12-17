@@ -27,8 +27,17 @@ pipeline {
                 script {
                     //sh 'docker info' 
                     dockerImage = docker.build registry + ":latest"
+                }
+            }
+       }
+       stage('Deploy Image') {
+        steps {
+            script {
+                docker.withRegistry( '', registryCredential ) {
+                    dockerImage.push()
+                    }
+                }
+            }
         }
-      }
-    }
     }
 }
