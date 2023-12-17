@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         registry = "vishnu1411/dockerrepo"
-        registryCredential = 'docker-token'
+        registryCredential = 'dockerhub'
         dockerImage = ''
     }
 
@@ -18,7 +18,6 @@ pipeline {
         stage ('Build and install') {
             steps {
                 //clean and build using maven
-                //this has to work
                 sh 'mvn clean install'
             }
         }
@@ -33,7 +32,7 @@ pipeline {
        stage('Deploy Image') {
         steps {
             script {
-                docker.withRegistry('', docker-token) {
+                docker.withRegistry('', registryCredential ) {
                     dockerImage.push()
                     }
                 }
