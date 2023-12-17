@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         registry = "vishnu1411/dockerrepo"
-        registryCredential = 'dockerhub-access-token'
+        registryCredential = 'docker-token'
         dockerImage = ''
   }
 
