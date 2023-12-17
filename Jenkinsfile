@@ -5,7 +5,7 @@ pipeline {
         registry = "vishnu1411/dockerrepo"
         registryCredential = 'docker-token'
         dockerImage = ''
-  }
+    }
 
     stages {
         stage ('SourceCode') {
