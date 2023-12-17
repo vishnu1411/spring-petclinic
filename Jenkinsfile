@@ -14,6 +14,7 @@ pipeline {
                 //clean and build using maven
                 //this has to work
                 sh 'mvn clean install'
+                sh 'mvn --version'
             }
 
         }
