@@ -25,8 +25,8 @@ pipeline {
         stage ('Building Image') {
             steps {
                 script {
-                    sh 'docker info' 
-                    //dockerImage = docker.build registry + ":latest"
+                    //sh 'docker info' 
+                    dockerImage = docker.build registry + ":latest"
         }
       }
     }
