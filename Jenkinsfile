@@ -1,6 +1,12 @@
 pipeline {
     agent any
 
+    environment {
+        registry = "vishnu1411/dockerrepo"
+        registryCredential = 'dockerhub-access-token'
+        dockerImage = ''
+  }
+
     stages {
         stage ('SourceCode') {
             steps {
@@ -14,18 +20,14 @@ pipeline {
                 //clean and build using maven
                 //this has to work
                 sh 'mvn clean install'
-                sh 'mvn --version'
             }
-
         }
-        stage ('Archive test results') {
+        stage ('Building Image') {
             steps {
-                //Archive the test results
-                junit '**/surefire-reports/*xml'
-                archiveArtifacts artifacts: '**/*.jar', followSymlinks: false
-            }
-
+                script {
+                    dockerImage = docker.build registry + ":latest"
         }
-
+      }
+    }
     }
 }
